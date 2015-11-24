@@ -1,0 +1,35 @@
+{
+  "name": "d3-geo-projection-picker",
+  "version": "1.0.0",
+  "description": "Hand-picked d3 geo projections",
+  "main": "index.js",
+  "bin": "cmd.js",
+  "scripts": {
+    "postinstall": "cd node_modules/d3-geo-projection && npm install smash uglify-js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/etpinard/d3-geo-projection-picker.git"
+  },
+  "keywords": [
+    "d3",
+    "geo-projections",
+    "maps",
+    "cartography"
+  ],
+  "author": "Étienne Tétreault-Pinard",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/etpinard/d3-geo-projection-picker/issues"
+  },
+  "homepage": "https://github.com/etpinard/d3-geo-projection-picker#readme",
+  "dependencies": {
+    "d3-geo-projection": "^0.2.15",
+    "fs-extra": "^0.26.2",
+    "minimist": "^1.2.0"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  }
+}
