@@ -22,10 +22,10 @@ function testResult(t, list, fileName) {
 
     _module(list, pathToResultFile);
 
-    var result  = fs.readFileSync(pathToResultFile, ENC);
-    var expect = fs.readFileSync(pathToExpectFile, ENC);
-
     setTimeout(function () {
+        var result  = fs.readFileSync(pathToResultFile, ENC);
+        var expect = fs.readFileSync(pathToExpectFile, ENC);
+
         t.equal(result, expect, fileName);
 
         patchList.forEach(function(name) {
