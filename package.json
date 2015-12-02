@@ -5,7 +5,7 @@
   "main": "index.js",
   "bin": "cmd.js",
   "scripts": {
-    "postinstall": "cd node_modules/d3-geo-projection && npm install smash uglify-js",
+    "postinstall": "node postinstall.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
