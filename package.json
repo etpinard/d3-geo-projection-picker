@@ -6,7 +6,7 @@
   "bin": "cmd.js",
   "scripts": {
     "postinstall": "node postinstall.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tap test/test.js"
   },
   "repository": {
     "type": "git",
@@ -31,5 +31,8 @@
   },
   "engines": {
     "node": ">=4.0.0"
+  },
+  "devDependencies": {
+    "tap": "^2.3.1"
   }
 }
