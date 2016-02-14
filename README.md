@@ -1,5 +1,11 @@
 # d3-geo-projection-picker
 
+[![npm version](https://badge.fury.io/js/d3-geo-projection-picker.svg)](https://badge.fury.io/js/d3-geo-projection-picker)
+
+[![Build Status](https://travis-ci.org/etpinard/d3-geo-projection-picker.svg?branch=master)](https://travis-ci.org/etpinard/d3-geo-projection-picker)
+[![Dependency Status](https://david-dm.org/etpinard/d3-geo-projection-picker.svg?style=flat-square)](https://david-dm.org/etpinard/d3-geo-projection-picker)
+[![devDependency Status](https://david-dm.org/plotly/plotly.js/dev-status.svg?style=flat-square)](https://david-dm.org/etpinard/d3-geo-projection-picker#info=devDependencies)
+
 Hand picked d3 geo projections.
 
 If you find yourself wanting more projections than the stock `d3.geo`
