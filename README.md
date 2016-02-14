@@ -57,11 +57,9 @@ var addProjectionsToD3 = require('./path/to/projection_module');
 
 addProjectionsToD3(d3);
 
-// now 'd3' has all
-```
+// now use `d3.geo[/* projection name */]` as you would using the `d3-geo-projection` module.
 
-and finally bundle the result and use `d3.geo[/* projection name */]` as you
-would using the full `d3-geo-projection` module.
+```
 
 ### Credits
 
