@@ -1,4 +1,4 @@
-function addProjectionToD3() {
+function addProjectionsToD3(d3) {
   d3.geo.project = function(object, projection) {
     var stream = projection.stream;
     if (!stream) throw new Error("not yet supported");
@@ -284,4 +284,4 @@ function addProjectionToD3() {
   }).raw = robinson;
 }
 
-module.exports = addProjectionToD3;
+module.exports = addProjectionsToD3;
