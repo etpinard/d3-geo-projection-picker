@@ -6,7 +6,7 @@
   "bin": "cmd.js",
   "scripts": {
     "postinstall": "node postinstall.js",
-    "test": "tap test/test.js"
+    "test": "tap test/*_test.js"
   },
   "repository": {
     "type": "git",
@@ -33,6 +33,7 @@
     "node": ">=4.0.0"
   },
   "devDependencies": {
+    "d3": "^3.5.15",
     "tap": "^2.3.1"
   }
 }
