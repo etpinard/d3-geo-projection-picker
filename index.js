@@ -18,8 +18,8 @@ var pathToBundle = path.join(pathToModule, 'd3.geo.projection.js');
 var pathToBundleOrig = path.join(pathToBuildFolder, 'd3.geo.projection.js.orig');
 var pathToBundleBuild = path.join(pathToBuildFolder, 'd3.geo.projection.js');
 
-var START = 'function addProjectionToD3() {';
-var END = '}\n' + 'module.exports = addProjectionToD3;\n';
+var START = 'function addProjectionsToD3(d3) {';
+var END = '}\n' + 'module.exports = addProjectionsToD3;\n';
 var REQUIRED = ['start', 'end', 'project', 'interrupt'];
 var MAKE = 'make d3.geo.projection.js';
 
@@ -28,11 +28,10 @@ var MAKE = 'make d3.geo.projection.js';
  *
  * @param {array} list
  *      list of projection name to include
- * @param {string} outPath
- *      output path of bundled d3.geo.projection file
- *
+ * @param {function} cb
+ *      callback function of the error and the output code
  */
-module.exports = function picker(list, outPath) {
+module.exports = function picker(list, cb) {
 
     // make copy of original files
     fs.copySync(pathToSrcStart, pathToSrcStartOrig);
@@ -44,7 +43,7 @@ module.exports = function picker(list, outPath) {
     fs.writeFileSync(pathToSrcStart, START);
     fs.writeFileSync(pathToSrcEnd, END);
 
-    // read 'index' line-by-line and comment projection not part of 'list'
+    // read 'index' line-by-line and comment out projections not part of 'list'
     var rl = readline.createInterface({
         input: fs.createReadStream(pathToSrcIndex)
     });
@@ -68,22 +67,13 @@ module.exports = function picker(list, outPath) {
         exec('cd ' + pathToModule + ' && ' + MAKE, function(err) {
             if(err) {
                 copyBackOriginalFiles();
-                throw err;
+                cb(err, null);
             }
 
             // copy bundle to build/ + copy back original files
             fs.copy(pathToBundle, pathToBundleBuild, function(err) {
-                if(err) {
-                    copyBackOriginalFiles();
-                    throw err;
-                }
                 copyBackOriginalFiles();
-
-                // output to outPath
-                var outStream = (typeof outPath === 'string') ?
-                        fs.createWriteStream(outPath) :
-                        outPath;
-                fs.createReadStream(pathToBundleBuild).pipe(outStream);
+                cb(err, fs.readFileSync(pathToBundleBuild, 'utf-8'));
             });
         });
     });
