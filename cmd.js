@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var parseArg = require('minimist');
 
 var picker = require('./');
