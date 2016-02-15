@@ -20,6 +20,8 @@ function testResult(t, list, fileName) {
 
     _module(list, function(err, res) { result = res; });
 
+    // need a big timeout so that d3.geo-projection bundle file in
+    // node_modules/de-geo-projection/ is reset before each test run.
     setTimeout(function () {
         var expect = fs.readFileSync(pathToExpectFile, ENC);
 
