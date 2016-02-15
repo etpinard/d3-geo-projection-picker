@@ -39,6 +39,9 @@ module.exports = function picker(list, cb) {
     fs.copySync(pathToSrcIndex, pathToSrcIndexOrig);
     fs.copySync(pathToBundle, pathToBundleOrig);
 
+    // remove bundle file so that make command execute properly
+    fs.removeSync(pathToBundle);
+
     // write up patched 'start' and 'end' files
     fs.writeFileSync(pathToSrcStart, START);
     fs.writeFileSync(pathToSrcEnd, END);
