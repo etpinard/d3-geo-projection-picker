@@ -31,7 +31,7 @@ function testResult(t, list, fileName) {
 
             t.equal(src, orig);
         });
-    }, 1500);
+    }, 5000);
 }
 
 test('robinson', function(t) {
