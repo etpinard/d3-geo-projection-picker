@@ -46,7 +46,8 @@ module.exports = function picker(list, cb) {
     fs.writeFileSync(pathToSrcStart, START);
     fs.writeFileSync(pathToSrcEnd, END);
 
-    // read 'index' line-by-line and comment out projections not part of 'list'
+    // read 'index' line-by-line and 
+    // include only projections part of 'list' into temporary index
     var rl = readline.createInterface({
         input: fs.createReadStream(pathToSrcIndex)
     });
