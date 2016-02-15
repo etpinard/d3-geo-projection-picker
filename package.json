@@ -27,8 +27,7 @@
   "dependencies": {
     "d3-geo-projection": "^0.2.16",
     "fs-extra": "^0.26.5",
-    "minimist": "^1.2.0",
-    "tap": "^5.4.4"
+    "minimist": "^1.2.0"
   },
   "engines": {
     "node": ">=4.0.0"
