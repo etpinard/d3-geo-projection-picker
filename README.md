@@ -4,7 +4,7 @@
 
 [![Build Status](https://travis-ci.org/etpinard/d3-geo-projection-picker.svg?branch=master)](https://travis-ci.org/etpinard/d3-geo-projection-picker)
 [![Dependency Status](https://david-dm.org/etpinard/d3-geo-projection-picker.svg?style=flat-square)](https://david-dm.org/etpinard/d3-geo-projection-picker)
-[![devDependency Status](https://david-dm.org/plotly/plotly.js/dev-status.svg?style=flat-square)](https://david-dm.org/etpinard/d3-geo-projection-picker#info=devDependencies)
+[![devDependency Status](https://david-dm.org/etpinard/d3-geo-projection-picker/dev-status.svg?style=flat-square)](https://david-dm.org/etpinard/d3-geo-projection-picker#info=devDependencies)
 
 Hand picked d3 geo projections.
 
