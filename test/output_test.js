@@ -52,3 +52,12 @@ test('plotly.js v1.x.x', function(t) {
         'plotly-projections'
     );
 });
+
+test('plotly.js v1.11.x and up', function(t) {
+    testResult(t, [
+        'eckert4', 'hammer', 'kavrayskiy7', 'miller', 'mollweide',
+        'natural-earth', 'robinson', 'sinusoidal', 'winkel3'
+        ],
+        'plotly-projections2'
+    );
+});
