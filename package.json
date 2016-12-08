@@ -5,8 +5,7 @@
   "main": "index.js",
   "bin": "cmd.js",
   "scripts": {
-    "postinstall": "node postinstall.js",
-    "test": "tap test/*_test.js"
+    "test": "standard | snazzy && tap test/test.js"
   },
   "repository": {
     "type": "git",
@@ -25,15 +24,22 @@
   },
   "homepage": "https://github.com/etpinard/d3-geo-projection-picker#readme",
   "dependencies": {
-    "d3-geo-projection": "^0.2.16",
-    "fs-extra": "^0.30.0",
-    "minimist": "^1.2.0"
+    "camelcase": "^4.0.0",
+    "d3-geo-projection": "^1.0.3",
+    "minimist": "^1.2.0",
+    "rollup": "^0.36.4",
+    "rollup-plugin-node-resolve": "^2.0.0"
   },
   "engines": {
     "node": ">=4.0.0"
   },
   "devDependencies": {
-    "d3": "^3.5.15",
-    "tap": "^5.4.4"
+    "d3": "^4.4.0",
+    "jsdom": "^9.8.3",
+    "snazzy": "^5.0.0",
+    "standard": "^8.2.0",
+    "tap": "^8.0.1",
+    "topojson-client": "^2.1.0",
+    "world-atlas": "^1.1.0"
   }
 }

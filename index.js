@@ -1,92 +1,88 @@
-var path = require('path');
-var readline = require('readline');
-var exec = require('child_process').exec;
+const rollup = require('rollup')
+const nodeResolve = require('rollup-plugin-node-resolve')
+const convert = require('./convert')
 
-var fs = require('fs-extra');
+const FAKE_PLUGIN_NAME = 'd3-geo-projection-picker'
+const FAKE_ENTRY = 'FAKE-ENTRY'
+const PKG = 'd3-geo-projection'
+const PKG_SRC = PKG + '/src'
 
-var pathToModule = path.dirname(require.resolve('d3-geo-projection'));
-var pathToSrcFolder = path.join(pathToModule, 'src');
-var pathToBuildFolder = path.join(__dirname, './build');
-var pathToSrcIndex = path.join(pathToSrcFolder, 'index.js');
-var pathToSrcIndexOrig = path.join(pathToBuildFolder, 'index.js.orig');
-var pathToSrcIndexBuild = path.join(pathToBuildFolder, 'index.js');
-var pathToSrcStart = path.join(pathToSrcFolder, 'start.js');
-var pathToSrcStartOrig = path.join(pathToBuildFolder, 'start.js.orig');
-var pathToSrcEnd = path.join(pathToSrcFolder, 'end.js');
-var pathToSrcEndOrig = path.join(pathToBuildFolder, 'end.js.orig');
-var pathToBundle = path.join(pathToModule, 'd3.geo.projection.js');
-var pathToBundleOrig = path.join(pathToBuildFolder, 'd3.geo.projection.js.orig');
-var pathToBundleBuild = path.join(pathToBuildFolder, 'd3.geo.projection.js');
-
-var START = 'function addProjectionsToD3(d3) {';
-var END = '}\n' + 'module.exports = addProjectionsToD3;\n';
-var REQUIRED = ['start', 'end', 'project', 'interrupt'];
-var MAKE = 'make d3.geo.projection.js';
+// Some useful references:
+//
+// - https://github.com/rollup/rollup/issues/762
+// - https://github.com/rollup/rollup-plugin-multi-entry/blob/master/index.js
+// - https://gist.github.com/Spy-Seth/f09120e6609c40a198f3bff56984a211
+// - https://github.com/rollup/rollup/wiki/JavaScript-API
+// - http://bl.ocks.org/mbostock/bb09af4c39c79cffcde4
+// - https://github.com/d3/d3-geo-projection/blob/master/index.js
+// - https://developer.mozilla.org/en/docs/web/javascript/reference/statements/export
 
 /**
- * pick and bundle d3.geo.projection file
+ * Projection picker
  *
- * @param {array} list
- *      list of projection name to include
+ * @param {Array} projList
+ *  list of projections to be included in output:
+ *   - items can either projection names or d3 projection method name,
+ *   - if projList is empty, all projections of the d3-geo-projection module
+ *     will be included.
+ *
+ * @param {Object} opts
+ *  code generation option passed to rollup, see full list at:
+ *    https://github.com/rollup/rollup/wiki/JavaScript-API#bundlegenerate-options
+ *
  * @param {function} cb
- *      callback function of the error and the output code
+ *  callback function of the rollup
+ *    - code generation error and
+ *    - code output
  */
-module.exports = function picker(list, cb) {
+module.exports = function (projList, opts, cb) {
+  rollup.rollup({
 
-    // make copy of original files
-    fs.copySync(pathToSrcStart, pathToSrcStartOrig);
-    fs.copySync(pathToSrcEnd, pathToSrcEndOrig);
-    fs.copySync(pathToSrcIndex, pathToSrcIndexOrig);
-    fs.copySync(pathToBundle, pathToBundleOrig);
+    // the bundle's starting point.
+    entry: FAKE_ENTRY,
 
-    // remove bundle file so that make command execute properly
-    fs.removeSync(pathToBundle);
+    plugins: [
+      makeFakePlugin(projList),
 
-    // write up patched 'start' and 'end' files
-    fs.writeFileSync(pathToSrcStart, START);
-    fs.writeFileSync(pathToSrcEnd, END);
+      // make sure third party modules are resolved correctly
+      nodeResolve({ jsnext: true })
+    ]
 
-    // read 'index' line-by-line and 
-    // include only projections part of 'list' into temporary index
-    var rl = readline.createInterface({
-        input: fs.createReadStream(pathToSrcIndex)
-    });
-    var wStream = fs.createWriteStream(pathToSrcIndexBuild);
+  })
+  .then((bundle) => {
+    let result = bundle.generate(opts)
 
-    rl.on('line', function(line) {
-        var projection = line.split('import "')[1].split('";')[0];
+    cb(null, result.code)
+  })
+  .catch(cb)
+}
 
-        if(REQUIRED.concat(list).indexOf(projection) !== -1) {
-            wStream.write(line + '\n');
-        }
-    });
+function makeFakePlugin (projList) {
+  let plugin = {}
 
-    // once patched index is done
-    rl.on('close', function() {
+  plugin.name = FAKE_PLUGIN_NAME
 
-        // copy patched 'index' file
-        fs.copySync(pathToSrcIndexBuild, pathToSrcIndex);
+  plugin.resolveId = (id) => {
+    if (id === FAKE_ENTRY) return FAKE_ENTRY
+  }
 
-        // exec make command
-        exec('cd ' + pathToModule + ' && ' + MAKE, function(err) {
-            if(err) {
-                copyBackOriginalFiles();
-                cb(err, null);
-            }
+  plugin.load = (id) => {
+    if (id === FAKE_ENTRY) return makeFakeEntry(projList)
+  }
 
-            // copy bundle to build/ + copy back original files
-            fs.copy(pathToBundle, pathToBundleBuild, function(err) {
-                copyBackOriginalFiles();
-                cb(err, fs.readFileSync(pathToBundleBuild, 'utf-8'));
-            });
-        });
-    });
-};
+  return plugin
+}
 
-// copy back original files
-function copyBackOriginalFiles() {
-    fs.copySync(pathToSrcStartOrig, pathToSrcStart);
-    fs.copySync(pathToSrcEndOrig, pathToSrcEnd);
-    fs.copySync(pathToSrcIndexOrig, pathToSrcIndex);
-    fs.copySync(pathToBundleOrig, pathToBundle);
+function makeFakeEntry (projList) {
+  if (projList.length > 0) {
+    return projList.map((item) => {
+      let method = convert.item2method(item)
+      let name = convert.item2name(item)
+
+      return `export { default as ${method} } from "${PKG_SRC}/${name}"`
+    })
+    .join('\n')
+  } else {
+    return `export * from "${PKG}"`
+  }
 }
