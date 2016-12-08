@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<canvas width="960" height="600"></canvas>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/topojson.v2.min.js"></script>
+<script src="./natural_earth.js"></script>
+<script>
+var context = d3.select('canvas').node().getContext('2d')
+var projection = d3.geoNaturalEarth()
+var path = d3.geoPath(projection).context(context)
+
+d3.json('https://d3js.org/world-110m.v1.json', function(err, world) {
+  if (err) throw err
+
+  context.beginPath()
+  path(topojson.mesh(world))
+  context.stroke()
+
+  context.beginPath()
+  path({ type: 'Sphere' })
+  context.stroke()
+})
+</script>
