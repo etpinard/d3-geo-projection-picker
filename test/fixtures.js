@@ -15,19 +15,19 @@ module.exports = {
 
   cases: [{
     list: ['robinson'],
-    size: 66366
+    size: '16.5 kB'
   }, {
     list: ['robinson', 'miller'],
-    size: 66771
+    size: '16.6 kB'
   }, {
     list: ['geoRobinson', 'geoMiller', 'winkel3'],
-    size: 70063
+    size: '17.5 kB'
   }, {
     list: [
       'eckert4', 'hammer', 'kavrayskiy7', 'miller', 'mollweide',
       'natural-earth', 'robinson', 'sinusoidal', 'winkel3'
     ],
-    size: 74375
+    size: '18.4 kB'
   }]
 }
 

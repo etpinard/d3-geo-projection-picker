@@ -1,5 +1,7 @@
 const test = require('tap').test
 const jsdom = require('jsdom')
+const gzipSize = require('gzip-size')
+const prettySize = require('prettysize')
 
 const picker = require('../')
 const convert = require('../convert')
@@ -14,7 +16,7 @@ fixtures.cases.forEach((_case) => {
     picker(list, fixtures.opts, (err, code) => {
       if (err) t.fail()
 
-      t.equal(code.length, _case.size, 'should generate correct bundle size')
+      t.equal(getSize(code), _case.size, 'should generate correct bundle size')
 
       run(code, (err, window) => {
         if (err) t.fail()
@@ -101,4 +103,8 @@ function drawWorld (d3, topojson, projection) {
     .append('path')
     .datum(datum)
     .attr('d', path)
+}
+
+function getSize (code) {
+  return prettySize(gzipSize.sync(code))
 }
