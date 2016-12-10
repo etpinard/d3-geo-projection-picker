@@ -36,16 +36,16 @@
     "node": ">=4.0.0"
   },
   "devDependencies": {
+    "coveralls": "^2.11.9",
     "d3": "^4.4.0",
     "gzip-size": "^3.0.0",
     "jsdom": "^9.8.3",
+    "nyc": "^6.6.1",
     "prettysize": "0.0.3",
     "snazzy": "^5.0.0",
     "standard": "^8.2.0",
     "tap": "^8.0.1",
     "topojson-client": "^2.1.0",
-    "world-atlas": "^1.1.0",
-    "coveralls": "^2.11.9",
-    "nyc": "^6.4.0"
+    "world-atlas": "^1.1.0"
   }
 }
