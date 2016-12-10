@@ -8,7 +8,7 @@ const convert = require('../convert')
 const fixtures = require('./fixtures')
 
 fixtures.cases.forEach((_case) => {
-  let list = _case.list
+  var list = _case.list
 
   test(`picking list "[${list.join(', ')}]"`, (t) => {
     t.plan(1 + (3 * list.length))
@@ -25,14 +25,14 @@ fixtures.cases.forEach((_case) => {
         const topojson = window.topojson
 
         list.forEach((item) => {
-          let method = convert.item2method(item)
+          var method = convert.item2method(item)
 
-          let projection = d3[method]()
+          var projection = d3[method]()
           t.ok(projection, 'should attached method to d3 object')
 
           drawWorld(d3, topojson, projection)
 
-          let pathGenerated = d3.select('path')
+          var pathGenerated = d3.select('path')
           t.equal(pathGenerated.size(), 1, 'should generate path')
           t.equal(pathGenerated.attr('d').split(',').length, fixtures.pathLength, 'should generate correct path length')
         })

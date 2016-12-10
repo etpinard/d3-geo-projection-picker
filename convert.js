@@ -20,7 +20,7 @@ exports.item2name = function (item) {
 }
 
 function strip (s) {
-  let ss = String(s).trim()
+  var ss = String(s).trim()
 
   return ss.substring(0, 3) === 'geo'
     ? ss.slice(3)

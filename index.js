@@ -50,7 +50,7 @@ module.exports = function (projList, opts, cb) {
 
   })
   .then((bundle) => {
-    let result = bundle.generate(opts)
+    var result = bundle.generate(opts)
 
     cb(null, result.code)
   })
@@ -58,7 +58,7 @@ module.exports = function (projList, opts, cb) {
 }
 
 function makeFakePlugin (projList) {
-  let plugin = {}
+  var plugin = {}
 
   plugin.name = FAKE_PLUGIN_NAME
 
@@ -76,8 +76,8 @@ function makeFakePlugin (projList) {
 function makeFakeEntry (projList) {
   if (projList.length > 0) {
     return projList.map((item) => {
-      let method = convert.item2method(item)
-      let name = convert.item2name(item)
+      var method = convert.item2method(item)
+      var name = convert.item2name(item)
 
       return `export { default as ${method} } from "${PKG_SRC}/${name}"`
     })
