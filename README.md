@@ -72,7 +72,7 @@ const path = d3.geoPath()
   .context(context)
 
 d3.json('https://d3js.org/world-110m.v1.json', (err, world) => {
-  if (err) throw error
+  if (err) throw err
 
   context.beginPath()
   path(topojson.mesh(world))
