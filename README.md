@@ -9,10 +9,10 @@
 Hand picked d3 geo projections.
 
 If you find yourself wanting more projections than the stock `d3.geo`
-[list](https://github.com/mbostock/d3/wiki/Geo-Projections) while feeling that
+[list](https://github.com/d3/d3-geo#projections) and feeling that
 the d3 geo projection [module](https://github.com/d3/d3-geo-projection) is too
 extensive for your needs, `d3-geo-projection-picker` is a tool that could help
-you find a middle ground.
+you find a happy middle ground.
 
 ### Install
 
@@ -26,47 +26,95 @@ npm install d3-geo-projection-picker
 
 ### Usage
 
-First, generated a *projection module* using either the CLI or the API.
-
-Using the CLI:
+Say you want to use the
+[Robinson](https://github.com/d3/d3-geo-projection#geoRobinson),
+[Miller](https://github.com/d3/d3-geo-projection#geoMiller) and
+[Winkel triplet](https://github.com/d3/d3-geo-projection#geoWinkel3)
+projections, using the CLI, run:
 
 ```bash
-d3-geo-projection-picker proj1 proj2 proj3 > output.js
+d3-geo-projection-picker robinson miller winkel3 > projections.js
 
 # or
-d3-geo-projection-picker proj1 proj2 proj3 -o output.js
+d3-geo-projection-picker robinson miller winkel3 -o projections.js
 
 # or
-d3-geo-projection-picker proj1 proj2 proj3 --output output.js
+d3-geo-projection-picker robinson miller winkel3 --output projections.js
 ```
 
-where `proj1`, `proj2`, `proj3` are the names of the projection (as found
-[here](https://github.com/mbostock/d3/wiki/Geo-Projections)) to included in the
-out file.
-
-Using the API:
+or using the API:
 
 ```js
-var fs = require('fs');
-var picker = require('d3-geo-projection-picker');
+const fs = require('fs')
+const picker = require('d3-geo-projection-picker')
 
-picker(['proj1', 'proj2', 'proj3'], function(err, result) {
-    fs.writeFileSync(pathToOutput, result);
-});
+picker(['robinson', 'miller', 'winkel3'], { /* bundling options */ }, (err, code) => {
+  fs.writeFileSync(/* path to output */, code)
+})
 ```
 
-Then, pass `d3` to the projection module:
+By default, `d3-geo-projection-picker` outputs a CommonJS module, so then one
+can [browserify](https://github.com/substack/node-browserify) the following:
+
 
 ```js
-var d3 = require('d3');
-var addProjectionsToD3 = require('./path/to/projection_module');
+const d3 = require('d3')
+const topojson = require('topojson-client')
+const projections = require('./projections')
 
-addProjectionsToD3(d3);
+const context = d3.select('canvas').node().getContext('2d')
 
-// now use `d3.geo[/* projection name */]` as you would using the `d3-geo-projection` module.
+// or '.geoMiller' or '.geoWinkel3'
+const projection = projections.geoRobinson()
 
+const path = d3.geoPath()
+  .projection(projection)
+  .context(context)
+
+d3.json('https://d3js.org/world-110m.v1.json', (err, world) => {
+  if (err) throw error
+
+  context.beginPath()
+  path(topojson.mesh(world))
+  context.stroke()
+})
 ```
+
+to draw a world map with the Robinson projection.
+
+### Advanced
+
+The picker function can bundle any combination of projections found in
+`d3-geo-projection` (see full list
+[here](https://github.com/d3/d3-geo-projection#projections)).
+
+Internally, `d3-geo-projection-picker` uses
+[Rollup](https://github.com/rollup/rollup). You can pass any Rollup
+bundle-generation options (see full list
+[here](https://github.com/rollup/rollup/wiki/JavaScript-API#bundlegenerate-options-))
+to `d3-geo-projection-picker` to get the output bundle of your needs.
+
+For example, to output a [UMD](https://github.com/umdjs/umd) bundle with
+[natural earth](https://github.com/d3/d3-geo-projection#geoNaturalEarth)
+projection, from the CLI:
+
+```bash
+d3-geo-projection-picker natural-earth --format umd --moduleName d3
+```
+
+or from the API
+
+```js
+const picker = require('d3-geo-projection-picker')
+const opts = { format: 'umd', moduleName: 'd3' }
+
+picker(['natural-earth'], opts, (err, code) => {})
+```
+
+See the [example](/example) folder for more details.
 
 ### Credits
 
 2016 Étienne Tétreault-Pinard. MIT License
+
+[![Standard - JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)

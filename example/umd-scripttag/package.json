@@ -1,0 +1,14 @@
+{
+  "name": "umd-scripttag",
+  "version": "1.0.0",
+  "description": "d3-geo-projection-picker for UMD + <script>",
+  "main": "index.html",
+  "scripts": {
+    "start": "d3-geo-projection-picker 'natural earth' --format umd --moduleName d3 > natural_earth.js"
+  },
+  "author": "Étienne Tétreault-Pinard",
+  "license": "MIT",
+  "devDependencies": {
+    "d3-geo-projection-picker": "file:../../"
+  }
+}

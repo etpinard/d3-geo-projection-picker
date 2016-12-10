@@ -1,0 +1,16 @@
+{
+  "name": "cjs-browserify",
+  "version": "1.0.0",
+  "description": "d3-geo-projection-picker for CommonJS + browserify",
+  "main": "index.js",
+  "scripts": {
+    "start": "d3-geo-projection-picker winkel3 > winkel3.js && browserify index.js | indexhtmlify > index.html"
+  },
+  "author": "Étienne Tétreault-Pinard",
+  "license": "MIT",
+  "devDependencies": {
+    "d3-geo-projection-picker": "file:../../",
+    "browserify": "^13.1.1",
+    "indexhtmlify": "^1.3.1"
+  }
+}
