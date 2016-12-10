@@ -5,7 +5,9 @@
   "main": "index.js",
   "bin": "cmd.js",
   "scripts": {
-    "test": "standard | snazzy && tap test/test.js"
+    "test": "standard | snazzy && tap test/test.js",
+    "cover": "nyc npm test",
+    "coveralls": "npm run cover && nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -42,6 +44,8 @@
     "standard": "^8.2.0",
     "tap": "^8.0.1",
     "topojson-client": "^2.1.0",
-    "world-atlas": "^1.1.0"
+    "world-atlas": "^1.1.0",
+    "coveralls": "^2.11.9",
+    "nyc": "^6.4.0"
   }
 }
