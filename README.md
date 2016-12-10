@@ -85,12 +85,12 @@ to draw a world map with the Robinson projection.
 ### Advanced
 
 The picker function can bundle any combination of projections found in
-`d3-geo-projection`, see full list
+`d3-geo-projection` (see full list
 [here](https://github.com/d3/d3-geo-projection#projections)).
 
 Internally, `d3-geo-projection-picker` uses
 [Rollup](https://github.com/rollup/rollup). You can pass any Rollup
-bundle-generated options (see full list
+bundle-generation options (see full list
 [here](https://github.com/rollup/rollup/wiki/JavaScript-API#bundlegenerate-options-))
 to `d3-geo-projection-picker` to get the output bundle of your needs.
 
@@ -111,7 +111,7 @@ const opts = { format: 'umd', moduleName: 'd3' }
 picker(['natural-earth'], opts, (err, code) => {})
 ```
 
-See [example](/example) folder for more details.
+See the [example](/example) folder for more details.
 
 ### Credits
 
