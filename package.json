@@ -5,7 +5,9 @@
   "main": "index.js",
   "bin": "cmd.js",
   "scripts": {
-    "test": "standard | snazzy && tap test/test.js"
+    "test": "standard | snazzy && tap test/test.js",
+    "cover": "nyc npm test",
+    "coveralls": "npm run cover && nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -34,9 +36,11 @@
     "node": ">=4.0.0"
   },
   "devDependencies": {
+    "coveralls": "^2.11.9",
     "d3": "^4.4.0",
     "gzip-size": "^3.0.0",
     "jsdom": "^9.8.3",
+    "nyc": "^6.6.1",
     "prettysize": "0.0.3",
     "snazzy": "^5.0.0",
     "standard": "^8.2.0",
