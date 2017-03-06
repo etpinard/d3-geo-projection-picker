@@ -29,7 +29,7 @@
     "camelcase": "^4.0.0",
     "d3-geo-projection": "^1.0.3",
     "minimist": "^1.2.0",
-    "rollup": "^0.36.4",
+    "rollup": "^0.41.4",
     "rollup-plugin-node-resolve": "^2.0.0"
   },
   "engines": {
@@ -40,11 +40,11 @@
     "d3": "^4.4.0",
     "gzip-size": "^3.0.0",
     "jsdom": "^9.8.3",
-    "nyc": "^6.6.1",
+    "nyc": "^10.1.2",
     "prettysize": "0.0.3",
-    "snazzy": "^5.0.0",
-    "standard": "^8.2.0",
-    "tap": "^8.0.1",
+    "snazzy": "^6.0.0",
+    "standard": "^9.0.0",
+    "tap": "^10.3.0",
     "topojson-client": "^2.1.0",
     "world-atlas": "^1.1.0"
   }
