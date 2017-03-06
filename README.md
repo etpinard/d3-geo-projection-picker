@@ -1,5 +1,7 @@
 # d3-geo-projection-picker
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/etpinard/d3-geo-projection-picker.svg)](https://greenkeeper.io/)
+
 [![npm version](https://badge.fury.io/js/d3-geo-projection-picker.svg)](https://badge.fury.io/js/d3-geo-projection-picker)
 
 [![Build Status](https://travis-ci.org/etpinard/d3-geo-projection-picker.svg?branch=master)](https://travis-ci.org/etpinard/d3-geo-projection-picker)
