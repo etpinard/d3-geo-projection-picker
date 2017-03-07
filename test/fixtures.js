@@ -11,23 +11,23 @@ module.exports = {
   topojsonSrc: loadTopojson(),
 
   pathLength: 5045,
-  fullSize: 193212,
+  fullSize: 186924,
 
   cases: [{
     list: ['robinson'],
-    size: '16.5 kB'
+    size: '13.2 kB'
   }, {
     list: ['robinson', 'miller'],
-    size: '16.6 kB'
+    size: '13.3 kB'
   }, {
     list: ['geoRobinson', 'geoMiller', 'winkel3'],
-    size: '17.5 kB'
+    size: '14.2 kB'
   }, {
     list: [
       'eckert4', 'hammer', 'kavrayskiy7', 'miller', 'mollweide',
       'natural-earth', 'robinson', 'sinusoidal', 'winkel3'
     ],
-    size: '18.4 kB'
+    size: '15.2 kB'
   }]
 }
 
