@@ -1,6 +1,6 @@
 {
   "name": "d3-geo-projection-picker",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Hand-picked d3 geo projections",
   "main": "index.js",
   "bin": "cmd.js",
