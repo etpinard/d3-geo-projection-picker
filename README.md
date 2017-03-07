@@ -7,6 +7,7 @@
 
 [![Dependency Status](https://david-dm.org/etpinard/d3-geo-projection-picker.svg?style=flat-square)](https://david-dm.org/etpinard/d3-geo-projection-picker)
 [![devDependency Status](https://david-dm.org/etpinard/d3-geo-projection-picker/dev-status.svg?style=flat-square)](https://david-dm.org/etpinard/d3-geo-projection-picker#info=devDependencies)
+[![Greenkeeper badge](https://badges.greenkeeper.io/etpinard/d3-geo-projection-picker.svg)](https://greenkeeper.io/)
 
 Hand picked d3 geo projections.
 
@@ -117,6 +118,6 @@ See the [example](/example) folder for more details.
 
 ### Credits
 
-2016 Étienne Tétreault-Pinard. MIT License
+2017 Étienne Tétreault-Pinard. MIT License
 
 [![Standard - JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
