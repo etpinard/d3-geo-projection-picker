@@ -11,7 +11,7 @@ module.exports = {
   topojsonSrc: loadTopojson(),
 
   pathLength: 5045,
-  fullSize: 186924,
+  fullSize: 186862,
 
   cases: [{
     list: ['robinson'],
