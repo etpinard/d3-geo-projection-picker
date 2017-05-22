@@ -27,7 +27,7 @@
   "homepage": "https://github.com/etpinard/d3-geo-projection-picker#readme",
   "dependencies": {
     "camelcase": "^4.0.0",
-    "d3-geo-projection": "^2.0.0",
+    "d3-geo-projection": "^2.1.2",
     "minimist": "^1.2.0",
     "rollup": "^0.41.4",
     "rollup-plugin-node-resolve": "^2.0.0"
