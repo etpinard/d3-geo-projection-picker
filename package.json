@@ -42,7 +42,7 @@
     "jsdom": "^9.12.0",
     "nyc": "^10.1.2",
     "prettysize": "0.1.0",
-    "snazzy": "^6.0.0",
+    "snazzy": "^7.1.1",
     "standard": "^10.0.0",
     "tap": "^10.3.0",
     "topojson-client": "^3.0.0",
