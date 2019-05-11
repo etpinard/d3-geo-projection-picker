@@ -30,7 +30,7 @@
     "d3-geo-projection": "^2.0.0",
     "minimist": "^1.2.0",
     "rollup": "^0.41.4",
-    "rollup-plugin-node-resolve": "^2.0.0"
+    "rollup-plugin-node-resolve": "^4.2.4"
   },
   "engines": {
     "node": ">=4.0.0"
