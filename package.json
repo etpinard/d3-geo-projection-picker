@@ -36,7 +36,7 @@
     "node": ">=4.0.0"
   },
   "devDependencies": {
-    "coveralls": "^2.11.9",
+    "coveralls": "^3.0.8",
     "d3": "^4.7.3",
     "gzip-size": "^3.0.0",
     "jsdom": "^9.12.0",
