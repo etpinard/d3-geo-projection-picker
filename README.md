@@ -5,10 +5,6 @@
 [![Build Status](https://travis-ci.org/etpinard/d3-geo-projection-picker.svg?branch=master)](https://travis-ci.org/etpinard/d3-geo-projection-picker)
 [![Coverage](https://coveralls.io/repos/github/etpinard/d3-geo-projection-picker/badge.svg?master)](https://coveralls.io/github/etpinard/d3-geo-projection-picker)
 
-[![Dependency Status](https://david-dm.org/etpinard/d3-geo-projection-picker.svg?style=flat-square)](https://david-dm.org/etpinard/d3-geo-projection-picker)
-[![devDependency Status](https://david-dm.org/etpinard/d3-geo-projection-picker/dev-status.svg?style=flat-square)](https://david-dm.org/etpinard/d3-geo-projection-picker#info=devDependencies)
-[![Greenkeeper badge](https://badges.greenkeeper.io/etpinard/d3-geo-projection-picker.svg)](https://greenkeeper.io/)
-
 Hand picked d3 geo projections.
 
 If you find yourself wanting more projections than the stock `d3.geo`
